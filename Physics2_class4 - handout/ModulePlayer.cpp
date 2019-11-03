@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "ModulePlayer.h"
 #include "ModulePhysics.h"
+#include "ModuleInput.h"
+#include "SDL/include/SDL_scancode.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -13,7 +15,25 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	App->physics->CreateRectangle(452, 765, 20, 30, b2_staticBody);
+	int radius = 10;
+
+	b2BodyDef body;
+	body.type = b2_dynamicBody;
+	body.position.Set(PIXEL_TO_METERS(initial_pos.x), PIXEL_TO_METERS(initial_pos.y));
+
+	b2Body* b = App->physics->world->CreateBody(&body);
+
+	b2CircleShape shape;
+	shape.m_radius = PIXEL_TO_METERS(radius);
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+	fixture.density = 1.0f;
+
+	b->CreateFixture(&fixture);
+
+	pbody->body = b;
+	b->SetUserData(pbody);
+	pbody->width = pbody->height = radius;
 	LOG("Loading player");
 	return true;
 }
@@ -32,9 +52,27 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
-// Update: draw background
+void ModulePlayer::LiveLoss()
+{
+	lives--;
+	started = false;
+	this->pbody->body->SetLinearVelocity(zero);
+	this->pbody->body->SetTransform({ PIXEL_TO_METERS(initial_pos.x),PIXEL_TO_METERS(initial_pos.y)}, 0.0f);
+	
+}
+
 update_status ModulePlayer::Update()
 {
+	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && !started)
+	{
+		this->pbody->body->ApplyForce(up, up,1);
+		started = true;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+	{
+		LiveLoss();
+	}
+
 
 	return UPDATE_CONTINUE;
 }

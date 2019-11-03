@@ -16,10 +16,17 @@ public:
 
 public:
 	void Restart();
-	void LiveLoss() { lives--; };
+	void LiveLoss();
 
-	fPoint initial_pos = {452,740};
+	b2Vec2 initial_pos = {452,740};
+	b2Vec2 up = { 0,-300 };
+	b2Vec2 zero = { 0,0 };
+
+	b2BodyDef body;
+	PhysBody* pbody = new PhysBody();
 
 	int lives = 3;
 	int score = 0;
+
+	bool started = false;
 };
