@@ -3,6 +3,8 @@
 #include "ModulePlayer.h"
 #include "ModulePhysics.h"
 #include "ModuleInput.h"
+#include "ModuleTextures.h"
+#include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleSceneIntro.h"
 #include "SDL/include/SDL_scancode.h"
@@ -22,6 +24,8 @@ bool ModulePlayer::Start()
 {
 	int radius = 10;
 	ball = App->physics->CreateCircle(initial_pos.x, initial_pos.y, radius, b2_dynamicBody);
+	sprite = App->textures->Load("pinball/Sprites.png");
+	ball_spr = { 483,1,25,25 };
 	LOG("Loading player");
 	return true;
 }
@@ -84,7 +88,11 @@ update_status ModulePlayer::Update()
 		lives = 3;
 		alive = false;
 	}
+	SDL_Rect r = {0,0,30,30};
 
+	App->renderer->Blit(sprite, METERS_TO_PIXELS(ball->body->GetPosition().x) - 13, METERS_TO_PIXELS(ball->body->GetPosition().y) -13, &ball_spr);
+
+	LOG("%d   %d", METERS_TO_PIXELS(ball->body->GetPosition().x), METERS_TO_PIXELS(ball->body->GetPosition().y));
 	return UPDATE_CONTINUE;
 }
 
