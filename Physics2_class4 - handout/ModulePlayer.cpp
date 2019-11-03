@@ -26,6 +26,7 @@ bool ModulePlayer::Start()
 	int pox = 159;
 	int poy = 175;
 	ball = App->physics->CreateCircle(initial_pos.x, initial_pos.y, radius, b2_dynamicBody);
+	ball->listener = App->scene_intro;
 	bouncers[0] = App->physics->CreateCircle(pox, poy, 20, b2_staticBody);
 	pox += 164;
 	bouncers[1] = App->physics->CreateCircle(pox, poy, 20, b2_staticBody);

@@ -26,6 +26,10 @@ public:
 	PhysBody* sensorSCORE1;
 	PhysBody* sensorSCORE2;
 	PhysBody* sensorSCORE3;
+	PhysBody* sensorSCORE4;
+	PhysBody* sensorSCORE5;
+	PhysBody* sensorSCORE6;
+	PhysBody* sensorSCORE7;
 	bool sensed;
 
 	SDL_Texture* circle;

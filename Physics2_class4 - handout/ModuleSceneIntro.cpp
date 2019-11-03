@@ -23,7 +23,7 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-
+	App->audio->PlayMusic("pinball/music.ogg");
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	circle = App->textures->Load("pinball/wheel.png");
@@ -36,6 +36,12 @@ bool ModuleSceneIntro::Start()
 
 	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT+ 50, SCREEN_WIDTH, 50);
 	sensorSCORE1 = App->physics->CreateRectangleSensor(175, 45, 25, 25);
+	sensorSCORE2 = App->physics->CreateRectangleSensor(233, 54, 25, 25);
+	sensorSCORE3 = App->physics->CreateRectangleSensor(295, 49, 25, 25);
+	sensorSCORE4 = App->physics->CreateRectangleSensor(248,263, 25, 25);
+	sensorSCORE5 = App->physics->CreateRectangleSensor(137,372, 25, 25);
+	sensorSCORE6 = App->physics->CreateRectangleSensor(348,371, 25, 25);
+	sensorSCORE7 = App->physics->CreateRectangleSensor(248,471, 25, 25);
 	App->physics->CreateRectangle(452, 765, 20, 30, b2_staticBody);
 	App->physics->CreateRectangle(472, 755, 20, 30, b2_staticBody);
 	App->physics->CreateRectangle(432, 755, 20, 30, b2_staticBody);
@@ -310,6 +316,8 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+		App->audio->PlayMusic("pinball/hidden_music.ogg");
 	paletal->body->ApplyAngularImpulse(0.5f, true);
 	paletar->body->ApplyAngularImpulse(-0.5f, true);
 	if (App->input->GetKey(SDL_SCANCODE_LEFT))
@@ -346,11 +354,19 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	int x, y;
-
-	App->audio->PlayFx(bonus_fx);
-
-	if (bodyB = App->player->ball)
+	
+	//App->audio->PlayFx(bonus_fx);
+	PhysBody* body = bodyB;
+	if (body == 
+		App->scene_intro->sensorSCORE1||
+		App->scene_intro->sensorSCORE2||
+		App->scene_intro->sensorSCORE3||
+		App->scene_intro->sensorSCORE4||
+		App->scene_intro->sensorSCORE5||
+		App->scene_intro->sensorSCORE6||
+		App->scene_intro->sensorSCORE7)
 	{
-		App->player->score = 69;
+		App->player->score += 10;
+		App->audio->PlayFx(bonus_fx);
 	}
 }
