@@ -19,7 +19,26 @@ Download the last version of the game [HERE](https://github.com/Leukino/Physics-
 ## Controls
 		
 	 				SPACE -> Start 									
-	Left Arrow -> Left Palette			Right Arrow  -> Right Palette				
-		 									
+	Left Arrow -> Left Palette			Right Arrow  -> Right Palette	
+
+	Special Keys
+					
+		3 -> restart, losing a life   	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								
 								
 
+DON'T PRESS P 
