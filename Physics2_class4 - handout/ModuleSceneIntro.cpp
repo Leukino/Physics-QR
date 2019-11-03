@@ -38,43 +38,43 @@ bool ModuleSceneIntro::Start()
 	App->physics->CreateRectangle(472, 755, 20, 30, b2_staticBody);
 	App->physics->CreateRectangle(432, 755, 20, 30, b2_staticBody);
 	/*
-	
-                                __...----..
-                             .-'           `-.
-                            /        .---.._  \
-                            |        |   \  \ |
-                             `.      |    | | |        _____
-       hardcode                `     '    | | /    _.-`      `.
-       yikes                    \    |  .'| //'''.'            \
-                                 `---'_(`.||.`.`.'    _.`.'''-. \
-                                    _(`'.    `.`.`'.-'  \\     \ \
-                                   (' .'   `-._.- /      \\     \ |
-                                  ('./   `-._   .-|       \\     ||
-                                  ('.\ | | 0') ('0 __.--.  \`----'/
-                             _.--('..|   `--    .'  .-.  `. `--..'
-               _..--..._ _.-'    ('.:|      .  /   ` 0 `   \
-            .'         .-'        `..'  |  / .^.           |
-           /         .'                 \ '  .             `._
-        .'|                              `.  \`...____.----._.'
-      .'.'|         .                      \ |    |_||_||__|
-     //   \         |                  _.-'| |_ `.   \
-     ||   |         |                     /\ \_| _  _ |
-     ||   |         /.     .              ' `.`.| || ||
-     ||   /        ' '     |        .     |   `.`---'/
-   .' `.  |       .' .'`.   \     .'     /      `...'
- .'     \  \    .'.'     `---\    '.-'   |
-)/\ / /)/ .|    \             `.   `.\   \
- )/ \(   /  \   |               \   | `.  `-.
-  )/     )   |  |             __ \   \.-`    \
-         |  /|  )  .-.      //' `-|   \  _   /
-        / _| |  `-'.-.\     ||    `.   )_.--'
-        )  \ '-.  /  '|     ''.__.-`\  | 
-       /  `-\  '._|--'               \  `.
-       \    _\                       /    `---.
-       /.--`  \                      \    .''''\
-       `._..._|                       `-.'  .-. |
-                                        '_.'-./.'
-
+																	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                __...----..							   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                             .-'           `-.						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                            /        .---.._  \						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                            |        |   \  \ |						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                             `.      |    | | |        _____		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       hardcode                `     '    | | /    _.-`      `.		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       yikes                    \    |  .'| //'''.'            \	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                 `---'_(`.||.`.`.'    _.`.'''-. \	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                    _(`'.    `.`.`'.-'  \\     \ \	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                   (' .'   `-._.- /      \\     \ |	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                  ('./   `-._   .-|       \\     ||	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                  ('.\ | | 0') ('0 __.--.  \`----'/	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                             _.--('..|   `--    .'  .-.  `. `--..'	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+               _..--..._ _.-'    ('.:|      .  /   ` 0 `   \		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            .'         .-'        `..'  |  / .^.           |		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+           /         .'                 \ '  .             `._		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        .'|             veuras hardcode  `.  \`...____.----._.'		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      .'.'|         .   a continuació         \ |    |_||_||__|		   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+     //   \         |   estàs advertit  _.-'| |_ `.   \				   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+     ||   |         |                     /\ \_| _  _ |				   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+     ||   |         /.     .              ' `.`.| || ||				   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+     ||   /        ' '     |        .     |   `.`---'/				   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+   .' `.  |       .' .'`.   \     .'     /      `...'				   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ .'     \  \    .'.'     `---\    '.-'   |							   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+)/\ / /)/ .|    \             `.   `.\   \							   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ )/ \(   /  \   |               \   | `.  `-.						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  )/     )   |  |             __ \   \.-`    \						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         |  /|  )  .-.      //' `-|   \  _   /						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        / _| |  `-'.-.\     ||    `.   )_.--'						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        )  \ '-.  /  '|     ''.__.-`\  | 							   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       /  `-\  '._|--'               \  `.							   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       \    _\                       /    `---.						   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       /.--`  \                      \    .''''\					   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+       `._..._|                       `-.'  .-. |					   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                        '_.'-./.'					   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+																	   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	*/
 	
 	int exteriorchain[40*2] = //chain 1 (exterior)
@@ -240,13 +240,47 @@ bool ModuleSceneIntro::Start()
 	364, 293
 	};
 	
-	App->physics->CreateChain(0, 0, exteriorchain, 40 * 2, b2_staticBody);
-	App->physics->CreateChain(0, 0, interiordreta, 26 * 2, b2_staticBody);
-	App->physics->CreateChain(0, 0, paletaesquerra, 7 * 2, b2_staticBody);
-	App->physics->CreateChain(0, 0, triangleesquerra, 4 * 2, b2_staticBody);
-	App->physics->CreateChain(0, 0, triangledret, 4 * 2, b2_staticBody);
-	App->physics->CreateChain(0, 0, interiorcurvaesq, 23 * 2, b2_staticBody);
-	App->physics->CreateChain(0, 0, interiorcentral, 33 * 2, b2_staticBody);
+	int lpalettechain[4 * 2] =
+	{
+		10, 1, 63, 53, 1, 22, 10, 1
+	};
+
+	App->physics->CreateChain(0, 0, exteriorchain, 40 * 2, b2_staticBody, nullptr);
+	App->physics->CreateChain(0, 0, interiordreta, 26 * 2, b2_staticBody, nullptr);
+	App->physics->CreateChain(0, 0, paletaesquerra, 7 * 2, b2_staticBody, nullptr);
+	App->physics->CreateChain(0, 0, triangleesquerra, 4 * 2, b2_staticBody, nullptr);
+	App->physics->CreateChain(0, 0, triangledret, 4 * 2, b2_staticBody, nullptr);
+	App->physics->CreateChain(0, 0, interiorcurvaesq, 23 * 2, b2_staticBody, nullptr);
+	App->physics->CreateChain(0, 0, interiorcentral, 33 * 2, b2_staticBody, nullptr);
+	b2MassData* massdata = new b2MassData();
+	//massdata->center.Set(lpalettechain[0] + 3, lpalettechain[1] + 14);
+	massdata->I = 0;
+	massdata->mass = 1;
+	paletal = App->physics->CreateRectangle(220, 776, 55, 20, b2_dynamicBody);
+	//paletal = App->physics->CreateChain(0, 0, lpalettechain, 4 * 2, b2_dynamicBody, massdata);
+	//paletal->body->SetGravityScale(0);
+
+	paletal_joint = App->physics->CreateCircle(200, 790, 2, b2_staticBody);
+
+	b2RevoluteJointDef revoluteJointDef_left;
+	revoluteJointDef_left.bodyA = paletal_joint->body;
+	revoluteJointDef_left.bodyB = paletal->body;
+	revoluteJointDef_left.collideConnected = false;
+
+	revoluteJointDef_left.enableLimit = true;
+	revoluteJointDef_left.lowerAngle = -35 * DEGTORAD;
+	revoluteJointDef_left.upperAngle =  20 * DEGTORAD;
+
+	//revoluteJointDef_left.localAnchorA.Set(PIXEL_TO_METERS(0), PIXEL_TO_METERS(0));
+	//revoluteJointDef_left.localAnchorB.Set(PIXEL_TO_METERS(10), PIXEL_TO_METERS(15));
+
+	revoluteJointDef_left.localAnchorA.Set(0, 0);
+	revoluteJointDef_left.localAnchorB.Set(PIXEL_TO_METERS(-3), PIXEL_TO_METERS(0));
+	b2RevoluteJoint* left_flipper_joint;
+	left_flipper_joint = (b2RevoluteJoint*)App->physics->GetWorld()->CreateJoint(&revoluteJointDef_left);
+
+	delete massdata;
+
 	return ret;
 }
 
@@ -268,10 +302,15 @@ update_status ModuleSceneIntro::Update()
 
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
-		circles.add(App->physics->CreateCircle(452, 740, 10));
+		circles.add(App->physics->CreateCircle(452, 740, 10, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
 	}
-
+	
+	LOG("angle %f", paletal->body->GetAngle() * RADTODEG);
+	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+		paletal->body->ApplyAngularImpulse(-150, true);
+	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+		paletal->body->SetAngularVelocity(0);
 	p2List_item<PhysBody*>* c = circles.getFirst();
 
 	while(c != NULL)

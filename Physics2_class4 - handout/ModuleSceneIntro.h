@@ -34,4 +34,7 @@ public:
 
 	SDL_Texture* sprites;
 	SDL_Rect background;
+
+	PhysBody* paletal;
+	PhysBody* paletal_joint;
 };
