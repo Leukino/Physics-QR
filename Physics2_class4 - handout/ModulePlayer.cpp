@@ -63,7 +63,7 @@ void ModulePlayer::LiveLoss()
 
 update_status ModulePlayer::Update()
 {
-	if (METERS_TO_PIXELS(ball->body->GetPosition().y) > 836)
+	if (METERS_TO_PIXELS(ball->body->GetPosition().y) > 836 || METERS_TO_PIXELS(ball->body->GetPosition().x) > 452)
 	{
 		LiveLoss();
 	}
