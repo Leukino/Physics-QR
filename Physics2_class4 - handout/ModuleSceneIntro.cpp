@@ -53,6 +53,11 @@ update_status ModuleSceneIntro::Update()
 		ray.y = App->input->GetMouseY();
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_LEFT))
+		LOG("Move left lol");
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT))
+		LOG("Move right lol");
+
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
 		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
