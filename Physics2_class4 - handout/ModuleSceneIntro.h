@@ -31,4 +31,7 @@ public:
 	uint bonus_fx;
 	p2Point<int> ray;
 	bool ray_on;
+
+	SDL_Texture* sprites;
+	SDL_Rect background;
 };

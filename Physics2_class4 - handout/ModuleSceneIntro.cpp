@@ -25,10 +25,16 @@ bool ModuleSceneIntro::Start()
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	circle = App->textures->Load("pinball/wheel.png"); 
+	circle = App->textures->Load("pinball/wheel.png");
 	box = App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
+	sprites = App->textures->Load("pinball/Sprites.png");
+
+	background.x = 0;
+	background.y = 0;
+	background.w = 482;
+	background.h = 857;
 
 	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);
 
@@ -67,7 +73,9 @@ update_status ModuleSceneIntro::Update()
 //			App->renderer->Blit(circle, x, y, NULL, 1.0f, c->data->GetRotation());
 //		c = c->next;
 //	}
-
+	
+	//HERE WE GONNA BLIT SHITS
+	App->renderer->Blit(sprites, 0, 0, &background);
 	return UPDATE_CONTINUE;
 }
 
