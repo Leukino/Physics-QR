@@ -259,12 +259,12 @@ bool ModuleSceneIntro::Start()
 	massdata->I = 0;
 	massdata->mass = 1;
 	paletal = App->physics->CreateRectangle(220, 776, 55, 20, b2_dynamicBody);
-	paletar = App->physics->CreateRectangle(400, 776, 55, 20, b2_dynamicBody);
+	paletar = App->physics->CreateRectangle(402, 776, 55, 20, b2_dynamicBody);
 	//paletal = App->physics->CreateChain(0, 0, lpalettechain, 4 * 2, b2_dynamicBody, massdata);
 	//paletal->body->SetGravityScale(0);
 
-	paletal_joint = App->physics->CreateCircle(200, 790, 2, b2_staticBody);
-	paletar_joint = App->physics->CreateCircle(275, 790, 2, b2_staticBody);
+	paletal_joint = App->physics->CreateCircle(200, 800, 2, b2_staticBody);
+	paletar_joint = App->physics->CreateCircle(275, 800, 2, b2_staticBody);
 	//left
 	b2RevoluteJointDef revoluteJointDef_left;
 	revoluteJointDef_left.bodyA = paletal_joint->body;
@@ -286,8 +286,8 @@ bool ModuleSceneIntro::Start()
 	revoluteJointDef_right.collideConnected = false;
 
 	revoluteJointDef_right.enableLimit = true;
-	revoluteJointDef_right.lowerAngle = 25 * DEGTORAD;
-	revoluteJointDef_right.upperAngle = -20 * DEGTORAD;
+	revoluteJointDef_right.lowerAngle = -25 * DEGTORAD;
+	revoluteJointDef_right.upperAngle = 20 * DEGTORAD;
 
 	revoluteJointDef_right.localAnchorA.Set(0, 0);
 	revoluteJointDef_right.localAnchorB.Set(PIXEL_TO_METERS(3), PIXEL_TO_METERS(0));
@@ -310,10 +310,12 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+	paletal->body->ApplyAngularImpulse(0.5f, true);
+	paletar->body->ApplyAngularImpulse(-0.5f, true);
 	if (App->input->GetKey(SDL_SCANCODE_LEFT))
-		paletal->body->ApplyAngularImpulse(-150, true);
+		paletal->body->ApplyAngularImpulse(-2, true);
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT))
-		paletar->body->ApplyAngularImpulse(150, true);
+		paletar->body->ApplyAngularImpulse(2, true);
 
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
@@ -321,7 +323,7 @@ update_status ModuleSceneIntro::Update()
 		circles.getLast()->data->listener = this;
 	}
 	
-	LOG("angle %f", paletal->body->GetAngle() * RADTODEG);		
+	LOG("angle %f", paletar->body->GetAngle() * RADTODEG);		
 	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 		paletal->body->SetAngularVelocity(0);
 	p2List_item<PhysBody*>* c = circles.getFirst();
