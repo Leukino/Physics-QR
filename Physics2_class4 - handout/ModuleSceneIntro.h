@@ -37,4 +37,9 @@ public:
 
 	PhysBody* paletal;
 	PhysBody* paletal_joint;
+	PhysBody* paletar;
+	PhysBody* paletar_joint;
+
+	SDL_Texture* paletal_tex;
+	SDL_Texture* paletar_tex;
 };

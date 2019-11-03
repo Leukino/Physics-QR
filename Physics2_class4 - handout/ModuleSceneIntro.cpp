@@ -257,27 +257,40 @@ bool ModuleSceneIntro::Start()
 	massdata->I = 0;
 	massdata->mass = 1;
 	paletal = App->physics->CreateRectangle(220, 776, 55, 20, b2_dynamicBody);
+	paletar = App->physics->CreateRectangle(400, 776, 55, 20, b2_dynamicBody);
 	//paletal = App->physics->CreateChain(0, 0, lpalettechain, 4 * 2, b2_dynamicBody, massdata);
 	//paletal->body->SetGravityScale(0);
 
 	paletal_joint = App->physics->CreateCircle(200, 790, 2, b2_staticBody);
-
+	paletar_joint = App->physics->CreateCircle(275, 790, 2, b2_staticBody);
+	//left
 	b2RevoluteJointDef revoluteJointDef_left;
 	revoluteJointDef_left.bodyA = paletal_joint->body;
 	revoluteJointDef_left.bodyB = paletal->body;
 	revoluteJointDef_left.collideConnected = false;
 
 	revoluteJointDef_left.enableLimit = true;
-	revoluteJointDef_left.lowerAngle = -35 * DEGTORAD;
+	revoluteJointDef_left.lowerAngle = -25 * DEGTORAD;
 	revoluteJointDef_left.upperAngle =  20 * DEGTORAD;
-
-	//revoluteJointDef_left.localAnchorA.Set(PIXEL_TO_METERS(0), PIXEL_TO_METERS(0));
-	//revoluteJointDef_left.localAnchorB.Set(PIXEL_TO_METERS(10), PIXEL_TO_METERS(15));
 
 	revoluteJointDef_left.localAnchorA.Set(0, 0);
 	revoluteJointDef_left.localAnchorB.Set(PIXEL_TO_METERS(-3), PIXEL_TO_METERS(0));
 	b2RevoluteJoint* left_flipper_joint;
 	left_flipper_joint = (b2RevoluteJoint*)App->physics->GetWorld()->CreateJoint(&revoluteJointDef_left);
+	//right
+	b2RevoluteJointDef revoluteJointDef_right;
+	revoluteJointDef_right.bodyA = paletar_joint->body;
+	revoluteJointDef_right.bodyB = paletar->body;
+	revoluteJointDef_right.collideConnected = false;
+
+	revoluteJointDef_right.enableLimit = true;
+	revoluteJointDef_right.lowerAngle = 25 * DEGTORAD;
+	revoluteJointDef_right.upperAngle = -20 * DEGTORAD;
+
+	revoluteJointDef_right.localAnchorA.Set(0, 0);
+	revoluteJointDef_right.localAnchorB.Set(PIXEL_TO_METERS(3), PIXEL_TO_METERS(0));
+	b2RevoluteJoint* right_flipper_joint;
+	right_flipper_joint = (b2RevoluteJoint*)App->physics->GetWorld()->CreateJoint(&revoluteJointDef_right);
 
 	delete massdata;
 
@@ -296,9 +309,9 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update()
 {
 	if (App->input->GetKey(SDL_SCANCODE_LEFT))
-		LOG("Move left lol");
+		paletal->body->ApplyAngularImpulse(-150, true);
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT))
-		LOG("Move right lol");
+		paletar->body->ApplyAngularImpulse(150, true);
 
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
@@ -306,9 +319,7 @@ update_status ModuleSceneIntro::Update()
 		circles.getLast()->data->listener = this;
 	}
 	
-	LOG("angle %f", paletal->body->GetAngle() * RADTODEG);
-	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-		paletal->body->ApplyAngularImpulse(-150, true);
+	LOG("angle %f", paletal->body->GetAngle() * RADTODEG);		
 	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 		paletal->body->SetAngularVelocity(0);
 	p2List_item<PhysBody*>* c = circles.getFirst();
