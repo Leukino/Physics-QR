@@ -75,10 +75,10 @@ update_status ModulePhysics::PreUpdate()
 	return UPDATE_CONTINUE;
 }
 
-PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
+PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius, b2BodyType type = b2_dynamicBody)
 {
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
+	body.type = type;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
@@ -102,10 +102,12 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height, b2BodyType type = b2_dynamicBody)
 {
 	b2BodyDef body;
-	if(type == b2_staticBody)
+	if (type == b2_staticBody)
 		body.type = b2_staticBody;
-	else
+	else if (type == b2_dynamicBody)
 		body.type = b2_dynamicBody;
+	else
+		body.type = b2_kinematicBody;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
@@ -154,14 +156,15 @@ PhysBody* ModulePhysics::CreateRectangleSensor(int x, int y, int width, int heig
 	return pbody;
 }
 
-PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2BodyType type = b2_dynamicBody)
+PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2BodyType type = b2_dynamicBody, b2MassData* massdata  = nullptr)
 {
 	b2BodyDef body;
 	body.type = type;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
-
+	if (massdata != nullptr)
+	b->SetMassData(massdata);
 	b2ChainShape shape;
 	b2Vec2* p = new b2Vec2[size / 2];
 
@@ -371,4 +374,9 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
+}
+
+b2World* ModulePhysics::GetWorld()
+{
+	return world;
 }
