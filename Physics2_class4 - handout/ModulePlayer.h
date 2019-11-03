@@ -18,6 +18,8 @@ public:
 	SDL_Texture* sprite;
 	SDL_Rect ball_spr;
 
+	PhysBody* bouncers[3];
+
 public:
 	void Restart();
 	void LiveLoss();

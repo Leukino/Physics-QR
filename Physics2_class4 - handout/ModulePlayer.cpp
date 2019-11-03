@@ -23,7 +23,16 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	int radius = 10;
+	int pox = 159;
+	int poy = 175;
 	ball = App->physics->CreateCircle(initial_pos.x, initial_pos.y, radius, b2_dynamicBody);
+	bouncers[0] = App->physics->CreateCircle(pox, poy, 20, b2_staticBody);
+	pox += 164;
+	bouncers[1] = App->physics->CreateCircle(pox, poy, 20, b2_staticBody);
+	pox = 245;
+	poy = 134;
+	bouncers[2] = App->physics->CreateCircle(pox, poy, 20, b2_staticBody);
+
 	sprite = App->textures->Load("pinball/Sprites.png");
 	ball_spr = { 483,1,25,25 };
 	LOG("Loading player");
@@ -54,6 +63,11 @@ void ModulePlayer::LiveLoss()
 
 update_status ModulePlayer::Update()
 {
+	if (METERS_TO_PIXELS(ball->body->GetPosition().y) > 836)
+	{
+		LiveLoss();
+	}
+
 	if (alive)
 	{
 		char t[10];
