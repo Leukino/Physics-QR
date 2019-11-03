@@ -3,7 +3,11 @@
 #include "ModulePlayer.h"
 #include "ModulePhysics.h"
 #include "ModuleInput.h"
+#include "ModuleWindow.h"
 #include "SDL/include/SDL_scancode.h"
+#include <sstream>
+#include <stdlib.h>
+
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -63,6 +67,9 @@ void ModulePlayer::LiveLoss()
 
 update_status ModulePlayer::Update()
 {
+	char t[10];
+	SDL_itoa(score, t, 10); 
+	App->window->SetTitle(t);
 	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && !started)
 	{
 		this->pbody->body->ApplyForce(up, up,1);
@@ -71,6 +78,10 @@ update_status ModulePlayer::Update()
 	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
 	{
 		LiveLoss();
+	}
+	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+	{
+		score++;
 	}
 
 
