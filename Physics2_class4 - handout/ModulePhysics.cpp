@@ -31,27 +31,27 @@ bool ModulePhysics::Start()
 	world = new b2World(b2Vec2(GRAVITY_X, -GRAVITY_Y));
 	world->SetContactListener(this);
 
-	// needed to create joints like mouse joint
-	b2BodyDef bd;
-	ground = world->CreateBody(&bd);
-
-	// big static circle as "ground" in the middle of the screen
-	int x = SCREEN_WIDTH / 2;
-	int y = SCREEN_HEIGHT / 1.5f;
-	int diameter = SCREEN_WIDTH / 2;
-
-	b2BodyDef body;
-	body.type = b2_staticBody;
-	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
-
-	b2Body* big_ball = world->CreateBody(&body);
-
-	b2PolygonShape shape;
-	shape.SetAsBox(PIXEL_TO_METERS(diameter) * 0.5f, PIXEL_TO_METERS(diameter)* 0.5f);
-
-	b2FixtureDef fixture;
-	fixture.shape = &shape;
-	big_ball->CreateFixture(&fixture);
+//	// needed to create joints like mouse joint
+//	b2BodyDef bd;
+//	ground = world->CreateBody(&bd);
+//
+//	// big static circle as "ground" in the middle of the screen
+//	int x = SCREEN_WIDTH / 2;
+//	int y = SCREEN_HEIGHT / 1.5f;
+//	int diameter = SCREEN_WIDTH / 2;
+//
+//	b2BodyDef body;
+//	body.type = b2_staticBody;
+//	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+//
+//	b2Body* big_ball = world->CreateBody(&body);
+//
+//	b2PolygonShape shape;
+//	shape.SetAsBox(PIXEL_TO_METERS(diameter) * 0.5f, PIXEL_TO_METERS(diameter)* 0.5f);
+//
+//	b2FixtureDef fixture;
+//	fixture.shape = &shape;
+//	big_ball->CreateFixture(&fixture);
 
 	return true;
 }
@@ -99,10 +99,13 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 	return pbody;
 }
 
-PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height)
+PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height, b2BodyType type = b2_dynamicBody)
 {
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
+	if(type == b2_staticBody)
+		body.type = b2_staticBody;
+	else
+		body.type = b2_dynamicBody;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);

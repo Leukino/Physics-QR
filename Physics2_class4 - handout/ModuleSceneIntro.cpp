@@ -31,12 +31,9 @@ bool ModuleSceneIntro::Start()
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 	sprites = App->textures->Load("pinball/Sprites.png");
 
-	background.x = 0;
-	background.y = 0;
-	background.w = 482;
-	background.h = 857;
+	background = { 0,0,482,857 };
 
-	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);
+	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT+ 50, SCREEN_WIDTH, 50);
 
 	return ret;
 }
@@ -57,22 +54,22 @@ update_status ModuleSceneIntro::Update()
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT))
 		LOG("Move right lol");
 
-//	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-//	{
-//		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
-//		circles.getLast()->data->listener = this;
-//	}
-//
-//	p2List_item<PhysBody*>* c = circles.getFirst();
-//
-//	while(c != NULL)
-//	{
-//		int x, y;
-//		c->data->GetPosition(x, y);
-//		if(c->data->Contains(App->input->GetMouseX(), App->input->GetMouseY()))
-//			App->renderer->Blit(circle, x, y, NULL, 1.0f, c->data->GetRotation());
-//		c = c->next;
-//	}
+	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	{
+		circles.add(App->physics->CreateCircle(452, 740, 10));
+		circles.getLast()->data->listener = this;
+	}
+
+	p2List_item<PhysBody*>* c = circles.getFirst();
+
+	while(c != NULL)
+	{
+		int x, y;
+		c->data->GetPosition(x, y);
+		if(c->data->Contains(App->input->GetMouseX(), App->input->GetMouseY()))
+			App->renderer->Blit(circle, x, y, NULL, 1.0f, c->data->GetRotation());
+		c = c->next;
+	}
 	
 	//HERE WE GONNA BLIT SHITS
 	App->renderer->Blit(sprites, 0, 0, &background);

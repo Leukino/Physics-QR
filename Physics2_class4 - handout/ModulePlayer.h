@@ -1,5 +1,6 @@
 #pragma once
 #include "Module.h"
+#include "ModulePhysics.h"
 #include "Globals.h"
 #include "p2Point.h"
 
@@ -14,5 +15,11 @@ public:
 	bool CleanUp();
 
 public:
+	void Restart();
+	void LiveLoss() { lives--; };
 
+	fPoint initial_pos = {452,740};
+
+	int lives = 3;
+	int score = 0;
 };
