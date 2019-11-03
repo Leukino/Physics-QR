@@ -13,6 +13,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 public:
 	void Restart();
@@ -22,11 +23,10 @@ public:
 	b2Vec2 up = { 0,-300 };
 	b2Vec2 zero = { 0,0 };
 
-	b2BodyDef body;
-	PhysBody* pbody = new PhysBody();
-
-	int lives = 3;
+	PhysBody* ball = new PhysBody();
+	int lives = 0;
 	int score = 0;
 
+	bool alive = false;
 	bool started = false;
 };

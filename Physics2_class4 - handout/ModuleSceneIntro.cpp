@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 #include "ModulePhysics.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -34,6 +35,7 @@ bool ModuleSceneIntro::Start()
 	background = { 0,0,482,857 };
 
 	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT+ 50, SCREEN_WIDTH, 50);
+	sensorSCORE1 = App->physics->CreateRectangleSensor(175, 45, 25, 25);
 	App->physics->CreateRectangle(452, 765, 20, 30, b2_staticBody);
 	App->physics->CreateRectangle(472, 755, 20, 30, b2_staticBody);
 	App->physics->CreateRectangle(432, 755, 20, 30, b2_staticBody);
@@ -295,16 +297,8 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
-	/*
-	if(bodyA)
+	if (bodyB = App->player->ball)
 	{
-		bodyA->GetPosition(x, y);
-		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
+		App->player->score = 69;
 	}
-
-	if(bodyB)
-	{
-		bodyB->GetPosition(x, y);
-		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
-	}*/
 }

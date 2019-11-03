@@ -4,6 +4,7 @@
 #include "ModulePhysics.h"
 #include "ModuleInput.h"
 #include "ModuleWindow.h"
+#include "ModuleSceneIntro.h"
 #include "SDL/include/SDL_scancode.h"
 #include <sstream>
 #include <stdlib.h>
@@ -20,24 +21,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	int radius = 10;
-
-	b2BodyDef body;
-	body.type = b2_dynamicBody;
-	body.position.Set(PIXEL_TO_METERS(initial_pos.x), PIXEL_TO_METERS(initial_pos.y));
-
-	b2Body* b = App->physics->world->CreateBody(&body);
-
-	b2CircleShape shape;
-	shape.m_radius = PIXEL_TO_METERS(radius);
-	b2FixtureDef fixture;
-	fixture.shape = &shape;
-	fixture.density = 1.0f;
-
-	b->CreateFixture(&fixture);
-
-	pbody->body = b;
-	b->SetUserData(pbody);
-	pbody->width = pbody->height = radius;
+	ball = App->physics->CreateCircle(initial_pos.x, initial_pos.y, radius);
 	LOG("Loading player");
 	return true;
 }
@@ -60,20 +44,31 @@ void ModulePlayer::LiveLoss()
 {
 	lives--;
 	started = false;
-	this->pbody->body->SetLinearVelocity(zero);
-	this->pbody->body->SetTransform({ PIXEL_TO_METERS(initial_pos.x),PIXEL_TO_METERS(initial_pos.y)}, 0.0f);
-	
+	ball->body->SetTransform({ PIXEL_TO_METERS(initial_pos.x),PIXEL_TO_METERS(initial_pos.y) }, 0.0f);
+	ball->body->SetLinearVelocity(zero);
 }
 
 update_status ModulePlayer::Update()
 {
-	char t[10];
-	SDL_itoa(score, t, 10); 
-	App->window->SetTitle(t);
-	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && !started)
+	if (alive)
 	{
-		this->pbody->body->ApplyForce(up, up,1);
+		char t[10];
+		SDL_itoa(score, t, 10);
+		App->window->SetTitle(t);
+	}
+	else
+	{
+		App->window->SetTitle("Press SPACE to start");
+	}
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !started)
+	{
+		ball->body->ApplyForceToCenter(up, true);
 		started = true;
+		if (!alive)
+		{
+			lives = 3;
+			alive = true;
+		}
 	}
 	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
 	{
@@ -83,10 +78,18 @@ update_status ModulePlayer::Update()
 	{
 		score++;
 	}
-
+	if (lives == 0)
+	{
+		score = 0;
+		lives = 3;
+		alive = false;
+	}
 
 	return UPDATE_CONTINUE;
 }
 
-
+void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+{
+	score = 69;
+}
 
