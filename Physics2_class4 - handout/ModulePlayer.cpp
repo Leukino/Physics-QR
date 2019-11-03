@@ -21,7 +21,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	int radius = 10;
-	ball = App->physics->CreateCircle(initial_pos.x, initial_pos.y, radius);
+	ball = App->physics->CreateCircle(initial_pos.x, initial_pos.y, radius, b2_dynamicBody);
 	LOG("Loading player");
 	return true;
 }
