@@ -34,6 +34,9 @@ bool ModuleSceneIntro::Start()
 	background = { 0,0,482,857 };
 
 	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT+ 50, SCREEN_WIDTH, 50);
+	App->physics->CreateRectangle(452, 765, 20, 30, b2_staticBody);
+	App->physics->CreateRectangle(472, 755, 20, 30, b2_staticBody);
+	App->physics->CreateRectangle(432, 755, 20, 30, b2_staticBody);
 
 	//chains
 	
