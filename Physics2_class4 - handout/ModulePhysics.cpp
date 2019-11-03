@@ -46,8 +46,8 @@ bool ModulePhysics::Start()
 
 	b2Body* big_ball = world->CreateBody(&body);
 
-	b2CircleShape shape;
-	shape.m_radius = PIXEL_TO_METERS(diameter) * 0.5f;
+	b2PolygonShape shape;
+	shape.SetAsBox(PIXEL_TO_METERS(diameter) * 0.5f, PIXEL_TO_METERS(diameter)* 0.5f);
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
