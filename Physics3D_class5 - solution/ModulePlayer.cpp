@@ -103,8 +103,8 @@ bool ModulePlayer::Start()
 
 	vehicle1 = App->physics->AddVehicle(car);
 	vehicle2 = App->physics->AddVehicle(car);
-	vehicle1->SetPos(12, 12, 15);
-	vehicle2->SetPos(15, 12, 15);
+	vehicle1->SetPos(12, 2, 15);
+	vehicle2->SetPos(15, 2, 15);
 
 	
 	return true;

@@ -15,8 +15,8 @@ ModuleSceneIntro::~ModuleSceneIntro()
 
 void ModuleSceneIntro::CreateWall(float x, float y, float width, float length)
 {
-	Cube c(width, 5.0f, length);
-	c.SetPos(x+(width/2), 2.5f, y + (length / 2));
+	Cube c(width, 2.5f, length);
+	c.SetPos(x+(width/2), 1.25f, y + (length / 2));
 	walls[wallcounter] = c;
 	Pwalls[wallcounter] = App->physics->AddBody(c, 0.0f);
 	wallcounter++;
@@ -44,6 +44,10 @@ bool ModuleSceneIntro::Start()
 	CreateWall(50.0f, 10.0f, 10.0f, 50.0f);
 	CreateWall(70.0f, 20.0f, 10.0f, 50.0f);
 	CreateWall(90.0f, 10.0f, 10.0f, 50.0f);
+
+	Cube cealling(140.0f, 2.5f, 140.0f);
+	cealling.SetPos(10.0f + (140.0f / 2), 5.0f, 10.0f + (140.0f / 2));
+	App->physics->AddBody(cealling, 0.0f);
 
 	App->camera->LookAt(vec3(0, 0, 0));
 	App->audio->PlayFx(1);
