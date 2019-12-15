@@ -30,7 +30,7 @@ bool ModuleSceneIntro::Start()
 
 	//App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 
-	App->camera->LookAt(vec3(90.0f, -90.0f, 90.0f));
+	App->camera->LookAt(vec3(90.0f, -110.0f, 90.0f));
 
 	CreateWall(0.0f, 0.0f, 150.0f, 15.0f);
 	CreateWall(0.0f, 10.0f, 15.0f, 140.0f);

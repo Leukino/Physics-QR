@@ -5,7 +5,7 @@
 #include "Primitive.h"
 
 #define MAX_SNAKE 2
-#define MAX_WALLS 25
+#define MAX_WALLS 15
 
 struct PhysBody3D;
 struct PhysMotor3D;
