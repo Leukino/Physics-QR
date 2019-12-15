@@ -48,4 +48,8 @@ private:
 
 	Cube walls[MAX_WALLS];
 	PhysBody3D* Pwalls[MAX_WALLS];
+
+	vec3 player1position;
+	vec3 player2position;
+
 };

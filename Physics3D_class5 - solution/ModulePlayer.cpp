@@ -6,9 +6,9 @@
 #include "PhysBody3D.h"
 #include "ModuleCamera3D.h"
 
-ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
+ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle1(NULL), vehicle2(NULL)
 {
-	turn = acceleration = brake = 0.0f;
+	turn1 = acceleration1 = brake1 = turn2 = acceleration2 = brake2 = 0.0f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -101,8 +101,11 @@ bool ModulePlayer::Start()
 	car.wheels[3].brake = true;
 	car.wheels[3].steering = false;
 
-	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(10, 10, 10);
+	vehicle1 = App->physics->AddVehicle(car);
+	vehicle2 = App->physics->AddVehicle(car);
+	vehicle1->SetPos(5, 12, 10);
+	vehicle2->SetPos(-5, 12, 10);
+
 	
 	return true;
 }
@@ -118,48 +121,74 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
-	turn = acceleration = brake = 0.0f;
-
+	turn1 = acceleration1 = brake1 = turn2 = acceleration2 = brake2 = 0.0f;
+	//PLAYER1 LUL
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION;
+		acceleration1 = MAX_ACCELERATION;
 		
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
+		if(turn1 < TURN_DEGREES)
+			turn1 +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
+		if(turn1 > -TURN_DEGREES)
+			turn1 -= TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = BRAKE_POWER;
+		brake1 = BRAKE_POWER;
 	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	//PLAYER2 LUL
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		vehicle->Push(0.0f, 2000.0f, 0.0f);
+		acceleration2 = MAX_ACCELERATION;
+
 	}
 
-	vehicle->ApplyEngineForce(acceleration);
-	vehicle->Turn(turn);
-	vehicle->Brake(brake);
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	{
+		if (turn2 < TURN_DEGREES)
+			turn2 += TURN_DEGREES;
+	}
 
-	vehicle->Render();
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	{
+		if (turn2 > -TURN_DEGREES)
+			turn2 -= TURN_DEGREES;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	{
+		brake2 = BRAKE_POWER;
+	}
+
+	vehicle1->ApplyEngineForce(acceleration1);
+	vehicle1->Turn(turn1);
+	vehicle1->Brake(brake1);
+
+	vehicle2->ApplyEngineForce(acceleration2);
+	vehicle2->Turn(turn2);
+	vehicle2->Brake(brake2);
+
+	vehicle1->Render();
+	vehicle2->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "Player 1 %.1f Km/h Player 2 %.1f Km/h", vehicle1->GetKmh(), vehicle2->GetKmh());
+
 	App->window->SetTitle(title);
 
+	vec3 vecc1 = vehicle1->GetPosition();
+	vec3 vecc2 = vehicle2->GetPosition();
+	LOG("P1: %f, %f, %f", vecc1.x, vecc1.y, vecc1.z);
+	LOG("P2: %f, %f, %f", vecc2.x, vecc2.y, vecc2.z);
 	return UPDATE_CONTINUE;
 }
-
-
 
