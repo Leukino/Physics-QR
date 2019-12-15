@@ -6,7 +6,7 @@
 #include "PhysBody3D.h"
 #include "ModuleCamera3D.h"
 
-ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
+ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle1(NULL), vehicle2(NULL)
 {
 	turn = acceleration = brake = 0.0f;
 }
@@ -123,8 +123,10 @@ bool ModulePlayer::Start()
 	car.wheels[3].brake = true;
 	car.wheels[3].steering = false;
 
-	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle1 = App->physics->AddVehicle(car);
+	vehicle2 = App->physics->AddVehicle(car);
+	vehicle1->SetPos(5, 12, 10);
+	vehicle2->SetPos(-5, 12, 10);
 	
 	return true;
 }
@@ -165,18 +167,26 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 
-	vehicle->ApplyEngineForce(acceleration);
-	vehicle->Turn(turn);
-	vehicle->Brake(brake);
+	vehicle1->ApplyEngineForce(acceleration);
+	vehicle1->Turn(turn);
+	vehicle1->Brake(brake);
 
-	vehicle->Render();
+	vehicle2->ApplyEngineForce(acceleration);
+	vehicle2->Turn(turn);
+	vehicle2->Brake(brake);
+
+	vehicle1->Render();
+	vehicle2->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "Player 1 %.1f Km/h Player 2 %.1f Km/h", vehicle1->GetKmh(), vehicle2->GetKmh());
+
 	App->window->SetTitle(title);
 
+	vec3 vecc1 = vehicle1->GetPosition();
+	vec3 vecc2 = vehicle2->GetPosition();
+	LOG("P1: %f, %f, %f", vecc1.x, vecc1.y, vecc1.z);
+	LOG("P2: %f, %f, %f", vecc2.x, vecc2.y, vecc2.z);
 	return UPDATE_CONTINUE;
 }
-
-
 

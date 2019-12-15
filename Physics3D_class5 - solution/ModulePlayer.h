@@ -20,7 +20,8 @@ public:
 	bool CleanUp();
 	void Render();
 
-	PhysVehicle3D* vehicle;
+	PhysVehicle3D* vehicle1;
+	PhysVehicle3D* vehicle2;
 	float turn;
 	float acceleration;
 	float brake;
