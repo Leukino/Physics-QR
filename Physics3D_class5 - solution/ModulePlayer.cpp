@@ -125,8 +125,10 @@ update_status ModulePlayer::Update(float dt)
 	//PLAYER1 LUL
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration1 = MAX_ACCELERATION;
-		
+		if (vehicle1->GetKmh() < 60)
+		{
+			acceleration1 = MAX_ACCELERATION;
+		}
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -154,8 +156,10 @@ update_status ModulePlayer::Update(float dt)
 	//PLAYER2 LUL
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		acceleration2 = MAX_ACCELERATION;
-
+		if (vehicle2->GetKmh() < 60)
+		{
+			acceleration2 = MAX_ACCELERATION;
+		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
