@@ -52,4 +52,9 @@ private:
 	vec3 player1position;
 	vec3 player2position;
 
+
+	Cube chp1;
+	Cube chp2;
+	PhysBody3D* checkpoint1;
+	PhysBody3D* checkpoint2;
 };

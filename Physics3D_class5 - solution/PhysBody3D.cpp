@@ -57,3 +57,15 @@ vec3 PhysBody3D::GetPosition()
 
 	return ret;
 }
+
+void PhysBody3D::SetAsSensor(bool is_sensor)
+{
+	if (this->is_sensor != is_sensor)
+	{
+		this->is_sensor = is_sensor; //entered a sensor
+		if (is_sensor == true) //what to do inside a sensor
+			body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		else //what to do when it leaves the sensor
+			body->setCollisionFlags(body->getCollisionFlags() &~ btCollisionObject::CF_NO_CONTACT_RESPONSE); 
+	}
+}
