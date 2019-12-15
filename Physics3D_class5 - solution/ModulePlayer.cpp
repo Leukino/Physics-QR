@@ -125,6 +125,18 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn1 = acceleration1 = brake1 = turn2 = acceleration2 = brake2 = 0.0f;
 	//PLAYER1 LUL
+
+	if ((vehicle1->GetPosition().x > 128) && (checks1 == 0 || checks1 == 2 || checks1 == 4))
+		checks1++;
+	if ((vehicle2->GetPosition().x > 128) && (checks2 == 0 || checks2 == 2 || checks2 == 4))
+		checks2++;
+	if ((vehicle1->GetPosition().x < 18) && (checks1 == 1 || checks1 == 3 || checks1 == 5))
+		checks1++;
+	if ((vehicle2->GetPosition().x < 18) && (checks2 == 1 || checks2 == 3 || checks2 == 5))
+		checks2++;
+
+	LOG("%d %d", checks1, checks2);
+
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		if (vehicle1->GetKmh() < 60)
@@ -205,14 +217,18 @@ update_status ModulePlayer::Update(float dt)
 	vehicle2->Render();
 
 	char title[80];
-	sprintf_s(title, "Player 1 %.1f Km/h Player 2 %.1f Km/h", vehicle1->GetKmh(), vehicle2->GetKmh());
+	sprintf_s(title, "Player 1 %d/3 laps   Player 2 %d/3 laps ", checks1 / 2, checks2 / 2);
 
+	if (App->player->checks1 == 6)
+		sprintf_s(title, "PLAYER 1 WINS PLAYER 1 WINS PLAYER 1 WINS PLAYER 1 WINS PLAYER 1 WINS");
+	else if (App->player->checks2 == 6)
+		sprintf_s(title, "PLAYER 2 WINS PLAYER 2 WINS PLAYER 2 WINS PLAYER 2 WINS PLAYER 2 WINS");
+	
 	App->window->SetTitle(title);
-
 	vec3 vecc1 = vehicle1->GetPosition();
 	vec3 vecc2 = vehicle2->GetPosition();
 	LOG("P1: %f, %f, %f", vecc1.x, vecc1.y, vecc1.z);
-	LOG("P2: %f, %f, %f", vecc2.x, vecc2.y, vecc2.z);
+	//LOG("P2: %f, %f, %f", vecc2.x, vecc2.y, vecc2.z);
 	return UPDATE_CONTINUE;
 }
 

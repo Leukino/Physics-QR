@@ -30,6 +30,9 @@ public:
 	float acceleration2;
 	float brake2;
 
+	int checks1 = 0;
+	int checks2 = 0;
+
 private:
 
 	PhysBody3D* chassis;
