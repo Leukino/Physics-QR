@@ -22,9 +22,13 @@ public:
 
 	PhysVehicle3D* vehicle1;
 	PhysVehicle3D* vehicle2;
-	float turn;
-	float acceleration;
-	float brake;
+	float turn1;
+	float acceleration1;
+	float brake1;
+
+	float turn2;
+	float acceleration2;
+	float brake2;
 
 private:
 

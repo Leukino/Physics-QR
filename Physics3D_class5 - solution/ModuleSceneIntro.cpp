@@ -17,11 +17,12 @@ ModuleSceneIntro::~ModuleSceneIntro()
 bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
+	App->audio->LoadFx("jump.wav");
 	bool ret = true;
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
-
+	App->audio->PlayFx(1);
 	return ret;
 }
 
@@ -38,8 +39,8 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	player1position = App->player->vehicle1->GetPosition();
 	player2position = App->player->vehicle2->GetPosition();
-
-	App->camera->Look({ 0, 50, 0 }, player1position - player2position);
+	vec3 sharedpos(player1position.x + player2position.x, 0, player1position.z + player2position.z);
+	App->camera->Look({ 0, 50, 0 }, sharedpos / 2);
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
