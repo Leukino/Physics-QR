@@ -145,6 +145,12 @@ update_status ModulePlayer::Update(float dt)
 	{
 		brake1 = BRAKE_POWER;
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+	{
+		vehicle1->Push(0.0f, 2000.0f, 0.0f);
+		App->audio->PlayFx(1);
+	}
 	//PLAYER2 LUL
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
@@ -167,6 +173,12 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		brake2 = BRAKE_POWER;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		vehicle2->Push(0.0f, 2000.0f, 0.0f);
+		App->audio->PlayFx(1);
 	}
 
 	vehicle1->ApplyEngineForce(acceleration1);
