@@ -28,14 +28,14 @@ bool ModuleSceneIntro::Start()
 	App->audio->LoadFx("jump.wav");
 	bool ret = true;
 
-	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
+	//App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 
-	//App->camera->LookAt(vec3(90.0f, -90.0f, 90.0f));
+	App->camera->LookAt(vec3(90.0f, -90.0f, 90.0f));
 
-	CreateWall(0.0f, 0.0f, 150.0f, 10.0f);
-	CreateWall(0.0f, 10.0f, 10.0f, 140.0f);
-	CreateWall(140.0f, 10.0f, 10.0f, 140.0f);
-	CreateWall(10.0f, 140.0f, 140.0f, 10.0f);
+	CreateWall(0.0f, 0.0f, 150.0f, 15.0f);
+	CreateWall(0.0f, 10.0f, 15.0f, 140.0f);
+	CreateWall(135.0f, 10.0f, 15.0f, 140.0f);
+	CreateWall(10.0f, 135.0f, 140.0f, 15.0f);
 
 	CreateWall(20.0f, 20.0f, 20.0f, 110.0f);
 	CreateWall(50.0f, 100.0f, 50.0f, 40.0f);
@@ -48,9 +48,6 @@ bool ModuleSceneIntro::Start()
 	Cube cealling(140.0f, 2.5f, 140.0f);
 	cealling.SetPos(10.0f + (140.0f / 2), 5.0f, 10.0f + (140.0f / 2));
 	App->physics->AddBody(cealling, 0.0f);
-
-	App->camera->LookAt(vec3(0, 0, 0));
-	App->audio->PlayFx(1);
 
 	return ret;
 }
@@ -66,10 +63,10 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-	player1position = App->player->vehicle1->GetPosition();
-	player2position = App->player->vehicle2->GetPosition();
-	vec3 sharedpos(player1position.x + player2position.x, 0, player1position.z + player2position.z);
-	App->camera->Look({ 0, 50, 0 }, sharedpos / 2);
+	//player1position = App->player->vehicle1->GetPosition();
+	//player2position = App->player->vehicle2->GetPosition();
+	//vec3 sharedpos(player1position.x + player2position.x, 0, player1position.z + player2position.z);
+	//App->camera->Look({ 0, 50, 0 }, sharedpos / 2);
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();

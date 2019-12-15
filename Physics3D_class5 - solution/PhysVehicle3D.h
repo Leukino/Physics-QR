@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Color.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -26,6 +27,7 @@ struct VehicleInfo
 	
 	vec3 chassis_size;
 	vec3 chassis_offset;
+	Color color;
 	float mass;
 	float suspensionStiffness; // default to 5.88 / 10.0 offroad / 50.0 sports car / 200.0 F1 car
 	float suspensionCompression; // default to 0.83

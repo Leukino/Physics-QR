@@ -103,8 +103,10 @@ bool ModulePlayer::Start()
 
 	vehicle1 = App->physics->AddVehicle(car);
 	vehicle2 = App->physics->AddVehicle(car);
-	vehicle1->SetPos(12, 2, 15);
-	vehicle2->SetPos(15, 2, 15);
+	vehicle1->SetPos(18, 2, 30);
+	vehicle2->SetPos(16, 2, 30);
+	vehicle1->info.color = Blue;
+	vehicle2->info.color = Red;
 
 	
 	return true;
@@ -145,7 +147,10 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake1 = BRAKE_POWER;
+		if (App->input->GetKey(SDL_SCANCODE_RCTRL) == KEY_REPEAT)
+			acceleration1 = -MAX_ACCELERATION / 2;
+		else
+			brake1 = BRAKE_POWER;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
@@ -176,7 +181,10 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
-		brake2 = BRAKE_POWER;
+		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+			acceleration2 = -MAX_ACCELERATION/2;
+		else
+			brake2 = BRAKE_POWER;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
