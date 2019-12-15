@@ -21,28 +21,6 @@ void ModulePlayer::Render()
 
 bool ModulePlayer::Start()
 {
-	Cube cube(2.0f, 2.0f, 5.0f);
-	chassis = App->physics->AddBody(cube);
-	chassis->SetPos(0.0f, 5.0f, 0.0f);
-
-	Cylinder wheel;
-	for (int i = 0; i < 4; i++)
-	{
-		wheels[i] = App->physics->AddBody(wheel);
-		wheels[i]->SetPos(3.0f*i, 0.0f, 0.0f);
-		
-	}
-
-	vec3 v0(0.5f, 0.0f, 0.0f);
-	vec3 v1(1.0f, -0.5f, 2.0f);
-	vec3 v2(-1.0f, -0.5f, 2.0f);
-	vec3 v3(1.0f, -0.5f, -2.0f);
-	vec3 v4(-1.0f, -0.5f, -2.0f);
-	App->physics->AddConstraintP2P(*chassis, *wheels[0], v1, v0);
-	App->physics->AddConstraintP2P(*chassis, *wheels[1], v2, v0);
-	App->physics->AddConstraintP2P(*chassis, *wheels[2], v3, v0);
-	App->physics->AddConstraintP2P(*chassis, *wheels[3], v4, v0);
-
 	LOG("Loading player");
 
 	VehicleInfo car;
@@ -124,7 +102,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(10, 10, 10);
 	
 	return true;
 }
@@ -163,6 +141,11 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		brake = BRAKE_POWER;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		vehicle->Push(0.0f, 2000.0f, 0.0f);
 	}
 
 	vehicle->ApplyEngineForce(acceleration);

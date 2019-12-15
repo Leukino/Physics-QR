@@ -5,6 +5,7 @@
 #include "Primitive.h"
 
 #define MAX_SNAKE 2
+#define MAX_WALLS 25
 
 struct PhysBody3D;
 struct PhysMotor3D;
@@ -19,9 +20,11 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void CreateWall(float x, float y, float width, float length);
+
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
-public:
+private:
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
 	Sphere s_snake[MAX_SNAKE];
@@ -29,6 +32,7 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+	int wallcounter = 0;
 
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
@@ -41,4 +45,7 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	Cube walls[MAX_WALLS];
+	PhysBody3D* Pwalls[MAX_WALLS];
 };

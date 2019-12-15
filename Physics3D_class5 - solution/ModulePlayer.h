@@ -28,5 +28,4 @@ public:
 private:
 
 	PhysBody3D* chassis;
-	PhysBody3D* wheels[4];
 };
