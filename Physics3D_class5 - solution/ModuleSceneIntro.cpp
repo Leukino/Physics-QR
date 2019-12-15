@@ -30,7 +30,7 @@ bool ModuleSceneIntro::Start()
 
 	//App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 
-	App->camera->LookAt(vec3(90.0f, -110.0f, 90.0f));
+	App->camera->LookAt(vec3(74.9f, 0.0f, 75.0f));
 
 	CreateWall(0.0f, 0.0f, 150.0f, 15.0f);
 	CreateWall(0.0f, 10.0f, 15.0f, 140.0f);
@@ -49,13 +49,6 @@ bool ModuleSceneIntro::Start()
 	cealling.SetPos(10.0f + (140.0f / 2), 5.0f, 10.0f + (140.0f / 2));
 	App->physics->AddBody(cealling, 0.0f);
 
-	chp1 = Cube(4.0f, 4.0f, 4.0f);
-	chp1.SetPos(132.0f, 0.5f, 132.0f);
-	//checkpoint1 = App->physics->AddBody(chp1, 0.0f);
-
-	chp2 = Cube(4.0f, 4.0f, 4.0f);
-	chp2.SetPos(18.0f, 0.5f, 18.0f);
-	//checkpoint2 = App->physics->AddBody(chp2, 0.0f);
 	return ret;
 }
 
@@ -83,8 +76,6 @@ update_status ModuleSceneIntro::Update(float dt)
 		walls[i].Render();
 	}
 	
-	//chp1.Render();
-	//chp2.Render();
 	return UPDATE_CONTINUE;
 }
 
