@@ -26,7 +26,9 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	App->audio->LoadFx("jump.wav");
+	App->audio->LoadFx("break.wav");
 	bool ret = true;
+	App->audio->PlayMusic("hidden_music.ogg", 0.0f);
 
 	//App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 

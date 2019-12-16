@@ -30,6 +30,7 @@ private:
 	Mix_Music*			music;
 	p2List<Mix_Chunk*>	fx;
 	unsigned int jumpaudio = 1;
+	unsigned int breakaudio = 2;
 };
 
 #endif // __ModuleAudio_H__

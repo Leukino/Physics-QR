@@ -53,4 +53,3 @@ Download the last version of the game [HERE](https://github.com/Leukino/Physics-
 								
 								
 
-DON'T PRESS P 

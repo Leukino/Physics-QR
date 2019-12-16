@@ -161,8 +161,10 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_RCTRL) == KEY_REPEAT)
 			acceleration1 = -MAX_ACCELERATION / 2;
-		else
+		else {
 			brake1 = BRAKE_POWER;
+			App->audio->PlayFx(2);
+		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
@@ -196,7 +198,10 @@ update_status ModulePlayer::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 			acceleration2 = -MAX_ACCELERATION/2;
 		else
+		{
 			brake2 = BRAKE_POWER;
+			App->audio->PlayFx(2);
+		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
@@ -220,10 +225,15 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "Player 1 %d/3 laps   Player 2 %d/3 laps ", checks1 / 2, checks2 / 2);
 
 	if (App->player->checks1 == 6)
+	{
 		sprintf_s(title, "PLAYER 1 WINS PLAYER 1 WINS PLAYER 1 WINS PLAYER 1 WINS PLAYER 1 WINS");
+		App->audio->PlayMusic("ff7.ogg", 0.0f);
+	}
 	else if (App->player->checks2 == 6)
+	{
 		sprintf_s(title, "PLAYER 2 WINS PLAYER 2 WINS PLAYER 2 WINS PLAYER 2 WINS PLAYER 2 WINS");
-	
+		App->audio->PlayMusic("ff7.ogg", 0.0f);
+	}
 	App->window->SetTitle(title);
 	vec3 vecc1 = vehicle1->GetPosition();
 	vec3 vecc2 = vehicle2->GetPosition();
